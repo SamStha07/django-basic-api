@@ -9,6 +9,8 @@ class HelloApiView(APIView):
     """Test API View"""
     serializer_class = HelloSerializer
 
+    # for getting data from API
+
     def get(self, request, format=None):
         """Returns a list of APIView features"""
         an_apiview = [
@@ -18,6 +20,8 @@ class HelloApiView(APIView):
             'Is mapped manually to URLs',
         ]
         return Response({'message': "Hello", 'an_apiview': an_apiview})
+
+    # For posting
 
     def post(self, request):
         """Create a hello message with our name"""
@@ -34,3 +38,17 @@ class HelloApiView(APIView):
                 serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+    # Update the current the data
+
+    def put(self, request, pk=None):
+        """Handle updating an object"""
+        return Response({'method': 'PUT'})
+
+    def patch(self, request, pk=None):
+        """Handle a partial update of an object"""
+        return Response({'method': 'PATCH'})
+
+    def delete(self, request, pk=None):
+        """Delete an object"""
+        return Response({'method': "DELETE"})
